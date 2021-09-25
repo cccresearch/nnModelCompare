@@ -3,24 +3,9 @@
 
 \usepackage{chinese}
 
-\usepackage[utf8]{inputenc} % allow utf-8 input
-\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
-\usepackage{hyperref}       % hyperlinks
-\usepackage{url}            % simple URL typesetting
-\usepackage{booktabs}       % professional-quality tables
-\usepackage{amsfonts}       % blackboard math symbols
-\usepackage{nicefrac}       % compact symbols for 1/2, etc.
-\usepackage{microtype}      % microtypography
-\usepackage{lipsum}
 
-\usepackage{fontspec}   %加這個就可以設定字體
-\usepackage{xeCJK}       %讓中英文字體分開設置
-\setCJKmainfont{標楷體} %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
-\XeTeXlinebreaklocale "zh"             %這兩行一定要加，中文才能自動換行
-\XeTeXlinebreakskip = 0pt plus 1pt     %這兩行一定要加，中文才能自動換行
 
 \title{深度學習模型的比較研究 -- 以 MNIST 為例}
-
 
 \author{
   陳鍾誠\thanks{Use footnote for providing further
@@ -34,6 +19,9 @@
 \maketitle
 
 \begin{abstract}
+本論文的開放原始碼專案網址為：\url{ https://github.com/cccresearch/nnModelCompare }
+\\
+\\
 不同的神經網路模型，經訓練之後的正確率可能差異很大。本文針對手寫數字辨識的MNIST 資料庫進行測試，以便觀察模型的表現，並分析其背後的原因。
 \end{abstract}
 
@@ -71,6 +59,10 @@ Algorithm Hill-Climbing(pi)
 End Algorithm
 \end{verbatim}
 
+\begin{center}
+\includegraphics{./img/fc1.png}
+\end{center}
+
 \subsection{高度函數如何設計}
 
 Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure 
@@ -95,7 +87,7 @@ Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure 
 
 Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph 
 
-\section{Experiments}
+\section{實驗}
 \label{sec:others}
 
 \begin{table}
@@ -109,6 +101,7 @@ Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph 
     fc2 & 10\% & 損失負無限大 \\
     fc2s & 92\% &       \\
     fc2net & 95\% &       \\
+    fc2signet & 91\% &       \\
     LeNet & 97\%  &      \\
     \bottomrule
   \end{tabular}
@@ -176,6 +169,7 @@ See awesome Table~\ref{tab:table}.
 \item Aliquam dignissim blandit est, in dictum tortor gravida eget. In ac rutrum magna.
 \end{itemize}
 
+\renewcommand\refname{參考文獻}
 
 \bibliographystyle{unsrt}  
 %\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
