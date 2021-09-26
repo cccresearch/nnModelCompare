@@ -72,7 +72,15 @@ def train(epoch):
   for batch_idx, (data, target) in enumerate(train_loader):
     optimizer.zero_grad()
     output = network(data)
-    loss = F.nll_loss(output, target)
+    loss = F.nll_loss(F.log_softmax(output, dim=1), target)
+    # 注意: nll_loss 是針對 softmax 的 loss
+    # 所以 network 的最後一層一定要是 softmax, 否則不能用 nll_loss
+    # 參考 https://clay-atlas.com/blog/2019/12/16/machine-learning-notes-nllloss-function/
+    # nll_loss 的 output 是 64*10, target 是 64*1
+    # print('output.shape=', output.shape) # output.shape= torch.Size([64, 10])
+    # print('target.shape=', target.shape) # target.shape= torch.Size([64])
+    # print('target=', target) # target= tensor([2, 0, 0, 7, 2, 5, 8, ...)
+    # sys.exit(1)
     loss.backward()
     optimizer.step()
     if batch_idx % log_interval == 0:
@@ -92,7 +100,7 @@ def test():
   with torch.no_grad():
     for data, target in test_loader:
       output = network(data)
-      test_loss += F.nll_loss(output, target, size_average=False).item()
+      test_loss += F.nll_loss(F.log_softmax(output, dim=1), target, size_average=False).item()
       pred = output.data.max(1, keepdim=True)[1]
       correct += pred.eq(target.data.view_as(pred)).sum()
   test_loss /= len(test_loader.dataset)

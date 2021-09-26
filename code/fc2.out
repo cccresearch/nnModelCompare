@@ -1,5 +1,8 @@
-Test set: Avg. loss: 2.3338, Accuracy: 983/10000 (10%)
-
+C:\ccc\research\code\nnModelAuto\code\train.py:75: UserWarning: Implicit dimension 
+choice for log_softmax has been deprecated. Change the call to include dim=X as an 
+argument.
+  loss = F.nll_loss(F.log_softmax(output), target) # 注意: nll_loss 是針對 softmax 
+的 loss
 Train Epoch: 1 [0/60000 (0%)]   Loss: 2.324244
 Train Epoch: 1 [640/60000 (1%)] Loss: 1.671832
 Train Epoch: 1 [1280/60000 (2%)]        Loss: 1.320720
